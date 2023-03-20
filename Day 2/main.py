@@ -3,6 +3,8 @@ data = [line.strip(" ") for line in data]
 data = [line.strip("\n") for line in data]
 data = [line.replace(" ", "") for line in data]
 
+#Part one
+
 def part_one():
     new_data = []
     for item in data:
@@ -15,6 +17,8 @@ def part_one():
             new_data.append(item)
     return len(new_data)
 
+#Part two
+
 def part_two():
         
     new_data = []
@@ -22,18 +26,11 @@ def part_two():
         index_letter = str(item[item.index(":") - 1]) #Extracting the letter
         first_index = int(item[:item.index("-")]) #First letter
         second_index = int(item[item.index("-") + 1:item.index(":") - 1]) #Second letter
+        string_cut = item[item.index(":"):]  #Only letters in a string
 
-        # print(index_letter)
-        # print(first_index)
-        # print(second_index)
-        # print(item[first_index])
-        
-        print(item[item.index(":") + 1:])
-
-        # if item[first_index] == index_letter and item[second_index] == index_letter:
-        #     print(item)
-    
-        
+        if string_cut[first_index] == index_letter and not string_cut[second_index] == index_letter:
+            new_data.append(item)
             
-    
-print(part_two())
+        if string_cut[second_index] == index_letter and not string_cut[first_index] == index_letter:
+            new_data.append(item)
+    return len(new_data)
